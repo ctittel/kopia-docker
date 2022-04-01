@@ -12,9 +12,6 @@ The entrypoint:
 
 After this, you can visit `http://<hostname>:51515` and set up your backups (Remember where you mount the files you want to back up in the container; in the docker-compose example below they are mounted to `/files` in the container, so you would need to create backups for e.g. `/files/important-stuff`).
 
-Each time the docker container is recreated / restarted, a new user is created for the snapshots (e.g. `root@db0ea1ccd4a0`).
-But because of Kopia's deduplication this shouldn't make a difference space-wise and with the repositories main password (in `KOPIA_PASSWORD`), you can mount these other "users" repositories too.
-
 
 ## docker-compose
 
@@ -24,6 +21,7 @@ services:
   kopia:
     build: https://github.com/ctittel/kopia-docker.git#main
     container_name: kopia
+    hostname: kopia-docker # important: otherwise the hostname will be different each time you start the container and kopia will use a new user (e.g. `root@db0ea1ccd4a0`)
     environment:
       - KOPIA_PASSWORD # important: the password for the repository at /backup
       - KOPIA_SERVER_USERNAME # optional: the username for the HTML UI; Default: kopia
