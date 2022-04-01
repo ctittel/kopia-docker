@@ -18,7 +18,7 @@ After this, you can visit `http://<hostname>:51515` and set up your backups.
 version: "3.3"
 services:
   kopia:
-    build: https://github.com/ctittel/kopia-docker.git
+    build: https://github.com/ctittel/kopia-docker.git#main
     container_name: kopia
     environment:
       - KOPIA_PASSWORD # important: the password for the repository at /backup
