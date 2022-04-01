@@ -10,7 +10,11 @@ The entrypoint:
 2. Connects the repository at `/backup` (using the password from `$KOPIA_PASSWORD`)
 3. Start the kopia HTML server on port `51515`
 
-After this, you can visit `http://<hostname>:51515` and set up your backups.
+After this, you can visit `http://<hostname>:51515` and set up your backups (Remember where you mount the files you want to back up in the container; in the docker-compose example below they are mounted to `/files` in the container, so you would need to create backups for e.g. `/files/important-stuff`).
+
+Each time the docker container is recreated / restarted, a new user is created for the snapshots (e.g. `root@db0ea1ccd4a0`).
+But because of Kopia's deduplication this shouldn't make a difference space-wise and with the repositories main password (in `KOPIA_PASSWORD`), you can mount these other "users" repositories too.
+
 
 ## docker-compose
 
