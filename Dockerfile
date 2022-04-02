@@ -18,5 +18,6 @@ ENV KOPIA_CACHE_DIRECTORY=/cache
 ENV KOPIA_LOG_DIR=/logs
 ENV KOPIA_CONFIG_PATH=/config/repository.config
 
+EXPOSE 51515
 WORKDIR /
 ENTRYPOINT "/script.bash"
