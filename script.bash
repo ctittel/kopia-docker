@@ -14,5 +14,5 @@ else
     kopia repository create filesystem --path /backup
 fi
 
-kopia repository connect filesystem --path /backup 
+kopia repository connect filesystem --path /repository
 kopia server start --ui --insecure --address="http://0.0.0.0:51515"
